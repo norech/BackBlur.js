@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- THIS FILE IS ONLY FOR DEMO -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo - BackBlur.js</title>
+    <style>
+        html {
+            font-family: "Segoe UI Bold", "Segoe UI", Arial, Helvetica, sans-serif
+        }
+        .parentdiv {
+            background-image: url('background.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+        }
+        .dark-backblur, .gray-backblur {
+            color: #fff;
+        }
+        .light-backblur, .dark-backblur, .gray-backblur {
+            position: relative;
+            border-radius: 0px;
+            border: 0px solid rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0.5rem;
+            overflow: hidden;
+            background: transparent;
+            box-shadow: 0px 0px 60px -30px rgba(0, 0, 0, 0.75);
+            padding: 1.75rem;
+            transition: 0.2s all ease;
+        }
+    </style>
+    <script src="../dist/backblur.js"></script>
+</head>
+<body>
+
+    <div class="parentdiv">
+        <div class="light-backblur">
+            <h1>Test 1</h1>
+            <p>Hello world! It works!</p>
+        </div>
+        <div class="gray-backblur">
+            <h1>Test 2</h1>
+            <p>It's gray.</p>
+        </div>
+        <div class="dark-backblur">
+            <h1>Test 3</h1>
+            <p>And it's black.</p>
+        </div>
+    </div>
+    <script>
+        console.time("First Call");
+        var lightBlur = new BackBlur({
+            selector: ".light-backblur",
+            background_color: 'rgba(255, 255, 255, 0.65)'
+        });
+        console.timeEnd("First Call");
+        
+        console.time("Second Call");
+        var greyBlur = new BackBlur({
+            selector: ".gray-backblur",
+            background_color: 'rgba(128, 128, 128, 0.6)'
+        });
+        console.timeEnd("Second Call");
+
+        console.time("Third Call");
+        var darkBlur = new BackBlur({
+            selector: ".dark-backblur",
+            background_color: 'rgba(0, 0, 0, 0.65)'
+        });
+        console.timeEnd("Third Call");
+    </script>
+
+</body>
+</html>
