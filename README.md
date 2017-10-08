@@ -8,14 +8,14 @@ First, you must download the JS files found in the `dist/` folder and include th
 Use this when you care about the speed and not about debugging.
 
 ```html
-<script src="backblur.js"></script>
+<script src="backblur.min.js"></script>
 ```
 
 ### Developement
 Use this when you care about debugging.
 
 ```html
-<script src="backblur.min.js"></script>
+<script src="backblur.js"></script>
 ```
 
 ## Example usage
