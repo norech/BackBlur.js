@@ -17,7 +17,7 @@ declare var BackBlur: {
         getElements(): HTMLElement[];
         clearCache(): void;
         update(): void;
-        clear(): void;
+        erase(): void;
         draw(): void;
     };
 };

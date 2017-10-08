@@ -100,6 +100,14 @@ var BackBlur = (function(){
 
             return settings
         }
+
+        /**
+         * Quote string to use it in RegExp.
+         * @param str String to escape
+         */
+        static regExpQuote(str : string) {
+            return (str+'').replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
+        };
     }
 
     /**
@@ -130,7 +138,7 @@ var BackBlur = (function(){
             if(!Helper.isValidCSSClassName(this.settings.tmp_prefix || "")) throw new Error(`BackBlur - "${this.settings.tmp_prefix}" is not a valid name.`)
 
             this.tmpName = this.settings.tmp_prefix + "_" + Math.floor(Math.random() * 9999999)
-            Helper.addEvent(window, 'resize', this.update)
+            Helper.addEvent(window, 'resize', () => this.update())
             this.update()
         }
 
@@ -170,17 +178,17 @@ var BackBlur = (function(){
          */
         update()
         {
-            this.clear()
+            this.erase()
             this.draw()
         }
 
         /**
          * Clears the styles.
          */
-        clear()
+        erase()
         {
             Helper.getAllBySelector("*[class*='" + this.tmpName + "_']").forEach(item => {
-                if(item.parentNode != null) item.parentNode.removeChild(item)
+                item.className = item.className.replace(new RegExp("[ ]*" + Helper.regExpQuote(this.tmpName+'_')+"([0-9]+)[ ]*", "g"), '')
             })
         }
 
